@@ -3,13 +3,12 @@ import {
   requireAuth,
   validateRequest,
   NotAuthorizedError,
-  OrderStatus,
 } from "@mert5432-ticket-app/common";
 import express, { Request, Response } from "express";
 import { param } from "express-validator";
 import mongoose from "mongoose";
 import { OrderCancelledPublisher } from "../events/publishers/order-cancelled-publisher";
-import { Order } from "../models/order";
+import { Order, OrderStatus } from "../models/order";
 import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
