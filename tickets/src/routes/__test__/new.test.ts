@@ -95,5 +95,3 @@ it("publishes an event", async () => {
 
   expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
-
-it.todo("emits an order created event");
