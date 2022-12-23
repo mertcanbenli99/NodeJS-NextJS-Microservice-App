@@ -25,6 +25,7 @@ it("returns an error if the ticket is not found", async () => {
 
 it("fetches the order with associated ticket", async () => {
   const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId.generate().toString("hex"),
     title: "concert",
     price: 20,
   });
@@ -52,6 +53,7 @@ it("fetches the order with associated ticket", async () => {
 
 it("returns an error if one user tries to fetch another users order", async () => {
   const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId.generate().toString("hex"),
     title: "concert",
     price: 20,
   });

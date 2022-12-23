@@ -30,6 +30,7 @@ it("returns an error if requested order is not found", async () => {
 it("returns a 401 if requested order is found but the order does not belong to currentUser", async () => {
   // create a ticket
   const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId.generate().toString("hex"),
     title: "anyvalidtitle",
     price: 10,
   });
@@ -56,6 +57,7 @@ it("returns a 401 if requested order is found but the order does not belong to c
 
 it("successfully marks an orderStatus as cancelled", async () => {
   const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId.generate().toString("hex"),
     title: "anyvalidtitle",
     price: 10,
   });
@@ -86,6 +88,7 @@ it("successfully marks an orderStatus as cancelled", async () => {
 
 it("emit an order:cancelled event if the order is successfully cancelled", async () => {
   const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId.generate().toString("hex"),
     title: "anyvalidtitle",
     price: 10,
   });
