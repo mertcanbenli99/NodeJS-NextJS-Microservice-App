@@ -22,7 +22,11 @@ build:
     context: tickets
     docker:
       dockerfile: Dockerfile
-
+  - image: gcr.io/ticketing-app-372411/expiration
+    context: expiration
+    docker:
+      dockerfile: Dockerfile
+ 
 manifests:
   rawYaml:
   - infra/k8s/auth-depl.yaml
@@ -34,3 +38,5 @@ manifests:
   - infra/k8s/orders-mongo-depl.yaml
   - infra/k8s/tickets-depl.yaml
   - infra/k8s/tickets-mongo-depl.yaml
+  - infra/k8s/expiration-redis-depl.yaml
+  - infra/k8s/expiration-depl.yaml
