@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import request from "supertest";
 import { app } from "../../app";
 import { Order } from "../../models/order";
+import { stripe } from "../../stripe";
+import { Payment } from "../../models/payment";
 
 it("throws an error if the route handler is not found", async () => {
   const response = await request(app).post("/api/payments").send({});
@@ -94,4 +96,42 @@ it("throws a bad request error if user tries to buy a cancelled/expired order", 
       token: "aaaa",
     })
     .expect(404);
+});
+
+it(" returns a 201 with valid payment inputs", async () => {
+  const userId = mongoose.Types.ObjectId.generate().toString("hex");
+  const price = Math.floor(Math.random() * 100000);
+  const order = Order.build({
+    id: mongoose.Types.ObjectId.generate().toString("hex"),
+    userId,
+    version: 0,
+    price,
+    status: OrderStatus.Created,
+  });
+
+  await order.save();
+
+  await request(app)
+    .post("/api/payments")
+    .set("Cookie", global.signin(userId))
+    .send({
+      token: "tok_visa",
+      orderId: order.id,
+    })
+    .expect(201);
+
+  const stripeCharges = await stripe.charges.list({ limit: 50 });
+  const stripeCharge = stripeCharges.data.find((charge) => {
+    return charge.amount === price * 100;
+  });
+
+  expect(stripeCharge).toBeDefined();
+  expect(stripeCharge?.currency).toEqual("try");
+
+  const payment = await Payment.findOne({
+    stripeId: stripeCharge?.id,
+    orderId: order.id,
+  });
+
+  expect(payment).not.toBeNull();
 });

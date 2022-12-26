@@ -8,26 +8,50 @@ build:
   artifacts:
   - image: gcr.io/ticketing-app-372411/auth
     context: auth
+    sync: 
+      manual:
+        - dest: .
+          src: 'src/**/*.ts'
     docker:
       dockerfile: Dockerfile
   - image: gcr.io/ticketing-app-372411/client
     context: client
+    sync: 
+      manual:
+        - dest: .
+          src: 'src/**/*.js'
     docker:
       dockerfile: Dockerfile
   - image: gcr.io/ticketing-app-372411/orders
     context: orders
+    sync: 
+      manual:
+        - dest: .
+          src: 'src/**/*.ts'
     docker:
       dockerfile: Dockerfile
   - image: gcr.io/ticketing-app-372411/tickets
     context: tickets
+    sync: 
+      manual:
+        - dest: .
+          src: 'src/**/*.ts'
     docker:
       dockerfile: Dockerfile
   - image: gcr.io/ticketing-app-372411/expiration
     context: expiration
+    sync: 
+      manual:
+        - dest: .
+          src: 'src/**/*.ts'
     docker:
       dockerfile: Dockerfile
   - image: gcr.io/ticketing-app-372411/payments
     context: payments
+    sync: 
+      manual:
+        - dest: .
+          src: 'src/**/*.ts'
     docker:
       dockerfile: Dockerfile
   
