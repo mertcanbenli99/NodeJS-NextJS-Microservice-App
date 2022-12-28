@@ -20,7 +20,7 @@ const start = async () => {
 };
 
 app.listen(3000, () => {
-  console.log("ticketing service v1");
+  console.log("authentication service v1");
   console.log("listening on port 3000");
 });
 
