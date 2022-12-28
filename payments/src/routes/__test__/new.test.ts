@@ -93,7 +93,7 @@ it("throws a bad request error if user tries to buy a cancelled/expired order", 
     .set("Cookie", global.signin(userId))
     .send({
       orderId: order.id,
-      token: "aaaa",
+      token: "tok_visa",
     })
     .expect(404);
 });
