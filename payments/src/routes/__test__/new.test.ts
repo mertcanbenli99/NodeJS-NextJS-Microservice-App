@@ -79,8 +79,8 @@ it("throws a bad request error if user tries to buy a cancelled/expired order", 
   const userId = mongoose.Types.ObjectId.generate().toString("hex");
 
   const order = Order.build({
-    id: userId,
-    userId: mongoose.Types.ObjectId.generate().toString("hex"),
+    id: mongoose.Types.ObjectId.generate().toString("hex"),
+    userId,
     version: 0,
     price: 20,
     status: OrderStatus.Cancelled,
@@ -89,13 +89,13 @@ it("throws a bad request error if user tries to buy a cancelled/expired order", 
   await order.save();
 
   await request(app)
-    .post("api/payments")
+    .post("/api/payments")
     .set("Cookie", global.signin(userId))
     .send({
       orderId: order.id,
-      token: "aaaa",
+      token: "tok_visa",
     })
-    .expect(404);
+    .expect(400);
 });
 
 it(" returns a 201 with valid payment inputs", async () => {
