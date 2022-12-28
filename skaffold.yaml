@@ -6,7 +6,7 @@ build:
   googleCloudBuild:
     projectId: ticketing-app-372411
   artifacts:
-  - image: gcr.io/ticketing-app-372411/auth
+  - image: mert5432100/auth
     context: auth
     sync: 
       manual:
@@ -14,7 +14,7 @@ build:
           src: 'src/**/*.ts'
     docker:
       dockerfile: Dockerfile
-  - image: mer5432100/client
+  - image: mert5432100/client
     context: client
     sync: 
       manual:
@@ -22,7 +22,7 @@ build:
           src: 'src/**/*.js'
     docker:
       dockerfile: Dockerfile
-  - image: mer5432100/orders
+  - image: mert5432100/orders
     context: orders
     sync: 
       manual:
@@ -30,7 +30,7 @@ build:
           src: 'src/**/*.ts'
     docker:
       dockerfile: Dockerfile
-  - image: mer5432100/tickets
+  - image: mert5432100/tickets
     context: tickets
     sync: 
       manual:
@@ -38,7 +38,7 @@ build:
           src: 'src/**/*.ts'
     docker:
       dockerfile: Dockerfile
-  - image: mer5432100/expiration
+  - image: mert5432100/expiration
     context: expiration
     sync: 
       manual:
@@ -46,7 +46,7 @@ build:
           src: 'src/**/*.ts'
     docker:
       dockerfile: Dockerfile
-  - image: mer5432100/payments
+  - image: mert5432100/payments
     context: payments
     sync: 
       manual:

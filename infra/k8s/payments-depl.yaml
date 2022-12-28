@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: payments  
-        image: mer5432100/payments
+        image: mert5432100/payments
         env:
           - name: NATS_CLIENT_ID
             valueFrom:

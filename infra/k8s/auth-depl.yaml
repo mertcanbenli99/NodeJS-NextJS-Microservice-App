@@ -15,7 +15,7 @@ spec:
       containers:
         
       - name: auth  
-        image: mer5432100/auth
+        image: mert5432100/auth
         env:
           - name: MONGO_URI
             value: 'mongodb://auth-mongo-srv:27017/auth'
