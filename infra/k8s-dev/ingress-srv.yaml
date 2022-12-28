@@ -7,6 +7,8 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: 'true'
   labels:
     name: ingress-service
+
+    
 spec:
   rules:
   - host: ticketing.dev
